@@ -66,5 +66,59 @@
         "total_ht": 4800,
         "tva": 864,
         "total_ttc": 5664
+    },
+    {
+        "id_facture": "FAC-20260429-007",
+        "date": "2026-04-29",
+        "heure": "20:53:57",
+        "caissier": "admin",
+        "articles": [
+            {
+                "code_barre": "9136575808107",
+                "nom": "Alcool",
+                "prix_unitaire_ht": 3000,
+                "quantite": 5,
+                "sous_total_ht": 15000
+            }
+        ],
+        "total_ht": 15000,
+        "tva": 2400,
+        "total_ttc": 17400
+    },
+    {
+        "id_facture": "FAC-20260429-008",
+        "date": "2026-04-29",
+        "heure": "20:54:22",
+        "caissier": "admin",
+        "articles": [
+            {
+                "code_barre": "9136575808107",
+                "nom": "Alcool",
+                "prix_unitaire_ht": 3000,
+                "quantite": 1,
+                "sous_total_ht": 3000
+            }
+        ],
+        "total_ht": 3000,
+        "tva": 480,
+        "total_ttc": 3480
+    },
+    {
+        "id_facture": "FAC-20260429-009",
+        "date": "2026-04-29",
+        "heure": "20:54:54",
+        "caissier": "admin",
+        "articles": [
+            {
+                "code_barre": "9136575808107",
+                "nom": "Alcool",
+                "prix_unitaire_ht": 3000,
+                "quantite": 6,
+                "sous_total_ht": 18000
+            }
+        ],
+        "total_ht": 18000,
+        "tva": 2880,
+        "total_ttc": 20880
     }
 ]
