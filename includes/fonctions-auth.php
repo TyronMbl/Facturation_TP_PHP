@@ -1,7 +1,8 @@
 <?php
-require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . "/../config/config.php";
 
-function lireUtilisateurs() {
+function lireUtilisateurs()
+{
     if (!file_exists(UTILISATEURS_FILE)) {
         return [];
     }
@@ -9,10 +10,14 @@ function lireUtilisateurs() {
     return json_decode($data, true) ?: [];
 }
 
-function verifierUtilisateur($identifiant, $mot_de_passe) {
+function verifierUtilisateur($identifiant, $mot_de_passe)
+{
     $utilisateurs = lireUtilisateurs();
     foreach ($utilisateurs as $utilisateur) {
-        if ($utilisateur['identifiant'] === $identifiant && password_verify($mot_de_passe, $utilisateur['mot_de_passe'])) {
+        if (
+            $utilisateur["identifiant"] === $identifiant &&
+            $mot_de_passe === $utilisateur["mot_de_passe"]
+        ) {
             return $utilisateur;
         }
     }
