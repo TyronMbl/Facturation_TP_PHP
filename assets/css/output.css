@@ -9658,7 +9658,7 @@
   }
 }
 @layer base {
-  :where(:root),:root:has(input.theme-controller[value=business]:checked),[data-theme="business"] {
+  :root:has(input.theme-controller[value=business]:checked),[data-theme="business"] {
     color-scheme: light;
     --color-base-100: oklch(97% 0.013 236.62);
     --color-base-200: oklch(95% 0.026 236.824);
@@ -9726,7 +9726,7 @@
   }
 }
 @layer base {
-  :root:has(input.theme-controller[value=dark]:checked),[data-theme="dark"] {
+  :where(:root),:root:has(input.theme-controller[value=dark]:checked),[data-theme="dark"] {
     color-scheme: light;
     --color-base-100: oklch(25.33% 0.016 252.42);
     --color-base-200: oklch(23.26% 0.014 253.1);
