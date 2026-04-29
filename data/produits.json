@@ -1,12 +1,12 @@
 [
   {
-    "code_barre": "3017620422003",
+    "code_barre": "303456",
     "nom": "PlayStation 5",
     "prix_unitaire_ht": 650,
     "date_enregistrement": "2025-04-21"
   },
   {
-    "code_barre": "9136575808107",
+    "code_barre": "95165165",
     "nom": "Nintendo Switch 2",
     "prix_unitaire_ht": 3000,
     "date_expiration": "09-12-2029",
@@ -14,7 +14,7 @@
     "date_enregistrement": "2025-04-28"
   },
   {
-    "code_barre": "90377235",
+    "code_barre": "214654",
     "nom": "Xbox Series X",
     "prix_unitaire_ht": 1000,
     "date_expiration": "09-10-2027",
