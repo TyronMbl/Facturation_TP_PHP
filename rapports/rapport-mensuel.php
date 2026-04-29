@@ -47,70 +47,68 @@ $moyenne_quotidienne = $nb_jours_actifs > 0 ? ($stats['total_ttc'] / $nb_jours_a
 include __DIR__ . '/../includes/header.php';
 ?>
 
-<div class="container">
-    <div class="header-section" style="margin-bottom: 2.5rem;">
-        <h2>Rapport Mensuel</h2>
-        <p class="text-muted" style="font-size: 1.1rem;">
-            Analyse de performance pour la période de <strong><?php echo date('m/Y'); ?></strong>
-        </p>
-    </div>
-
-    <div class="stats-grid">
-        <div class="stat-card" style="border-left: 4px solid var(--primary);">
-            <div class="stat-label">Chiffre d'Affaires (TTC)</div>
-            <div class="stat-value" style="color: var(--primary);">
-                <?php echo number_format($stats['total_ttc'], 0, ',', ' '); ?> 
-                <span class="stat-unit">CDF</span>
+<div class="space-y-6">
+    <div class="card bg-base-100 shadow">
+        <div class="card-body">
+            <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                <div>
+                    <h2 class="card-title">Rapport mensuel</h2>
+                    <p class="opacity-70">Analyse de performance pour <?php echo date('m/Y'); ?></p>
+                </div>
+                <div class="badge badge-outline">Mois en cours</div>
             </div>
-        </div>
-
-        <div class="stat-card" style="border-left: 4px solid var(--accent);">
-            <div class="stat-label">Moyenne Quotidienne</div>
-            <div class="stat-value" style="color: var(--accent);">
-                <?php echo number_format($moyenne_quotidienne, 0, ',', ' '); ?> 
-                <span class="stat-unit">CDF / jour</span>
-            </div>
-        </div>
-
-        <div class="stat-card" style="border-left: 4px solid var(--secondary);">
-            <div class="stat-label">Volume de Transactions</div>
-            <div class="stat-value" style="color: var(--secondary);">
-                <?php echo $stats['nb_factures']; ?> 
-                <span class="stat-unit">Ventes</span>
+            <div class="stats stats-vertical lg:stats-horizontal bg-base-200">
+                <div class="stat">
+                    <div class="stat-title">Chiffre d'affaires (TTC)</div>
+                    <div class="stat-value text-primary"><?php echo number_format($stats['total_ttc'], 0, ',', ' '); ?></div>
+                    <div class="stat-desc">CDF</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-title">Moyenne quotidienne</div>
+                    <div class="stat-value text-accent"><?php echo number_format($moyenne_quotidienne, 0, ',', ' '); ?></div>
+                    <div class="stat-desc">CDF / jour</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-title">Volume de transactions</div>
+                    <div class="stat-value"><?php echo $stats['nb_factures']; ?></div>
+                    <div class="stat-desc">Ventes</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="card">
-        <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1.5rem;">Évolution quotidienne des ventes</h3>
-        <?php if (empty($stats['jours'])): ?>
-            <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
-                <p>Aucune donnée disponible pour ce mois.</p>
-            </div>
-        <?php else: ?>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Ventes</th>
-                            <th>Total HT</th>
-                            <th>Total TTC</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($stats['jours'] as $date => $d): ?>
+    <div class="card bg-base-100 shadow">
+        <div class="card-body">
+            <h3 class="card-title">Evolution quotidienne des ventes</h3>
+            <?php if (empty($stats['jours'])): ?>
+                <div class="alert">
+                    <span>Aucune donnee disponible pour ce mois.</span>
+                </div>
+            <?php else: ?>
+                <div class="overflow-x-auto">
+                    <table class="table table-zebra">
+                        <thead>
                             <tr>
-                                <td style="font-weight: 600;"><?php echo date('d/m/Y', strtotime($date)); ?></td>
-                                <td><span class="badge-qty"><?php echo $d['nb_factures']; ?></span></td>
-                                <td><?php echo number_format($d['total_ht'], 0, ',', ' '); ?> CDF</td>
-                                <td style="font-weight: 700; color: var(--primary);"><?php echo number_format($d['total_ttc'], 0, ',', ' '); ?> CDF</td>
+                                <th>Date</th>
+                                <th>Ventes</th>
+                                <th>Total HT</th>
+                                <th>Total TTC</th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php endif; ?>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($stats['jours'] as $date => $d): ?>
+                                <tr>
+                                    <td class="font-semibold"><?php echo date('d/m/Y', strtotime($date)); ?></td>
+                                    <td><span class="badge badge-outline"><?php echo $d['nb_factures']; ?></span></td>
+                                    <td><?php echo number_format($d['total_ht'], 0, ',', ' '); ?> CDF</td>
+                                    <td class="font-semibold text-primary"><?php echo number_format($d['total_ttc'], 0, ',', ' '); ?> CDF</td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
 </div>
 

@@ -1,6 +1,37 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+@layer components {
+  .scanner-guide {
+    position: absolute;
+    inset: 0;
+    border: 2px dashed oklch(60% 0.126 221.723 / 0.6);
+    border-radius: var(--radius-box);
+    pointer-events: none;
+  }
+  .scanner-guide .laser {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 50%;
+    height: 2px;
+    background: oklch(71% 0.202 349.761);
+    box-shadow: 0 0 12px oklch(71% 0.202 349.761 / 0.7);
+    animation: scanner-move 2s linear infinite;
+  }
+  @keyframes scanner-move {
+    0% {
+      transform: translateY(-120px);
+    }
+    50% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(120px);
+    }
+  }
+}
+
 @plugin "daisyui/theme" {
     name: "business";
     default: true;

@@ -50,86 +50,79 @@ uasort($stats['produits'], function($a, $b) {
 include __DIR__ . '/../includes/header.php';
 ?>
 
-<div class="container">
-    <div class="header-section" style="margin-bottom: 2.5rem;">
-        <h2>Rapport Journalier</h2>
-        <p class="text-muted" style="font-size: 1.1rem;">
-            Résumé de l'activité pour le <strong><?php echo date('d/m/Y'); ?></strong>
-        </p>
-    </div>
-
-    <div class="stats-grid">
-        <div class="stat-card" style="border-left: 4px solid var(--primary);">
-            <div class="stat-label">Total HT</div>
-            <div class="stat-value">
-                <?php echo number_format($stats['total_ht'], 0, ',', ' '); ?> 
-                <span class="stat-unit">CDF</span>
+<div class="space-y-6">
+    <div class="card bg-base-100 shadow">
+        <div class="card-body">
+            <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                <div>
+                    <h2 class="card-title">Rapport journalier</h2>
+                    <p class="opacity-70">Resume de l'activite pour le <?php echo date('d/m/Y'); ?></p>
+                </div>
+                <div class="badge badge-outline">Jour en cours</div>
             </div>
-        </div>
-        
-        <div class="stat-card" style="border-left: 4px solid var(--primary-light);">
-            <div class="stat-label">Total TTC</div>
-            <div class="stat-value" style="color: var(--primary);">
-                <?php echo number_format($stats['total_ttc'], 0, ',', ' '); ?> 
-                <span class="stat-unit">CDF</span>
-            </div>
-        </div>
-
-        <div class="stat-card" style="border-left: 4px solid var(--accent);">
-            <div class="stat-label">TVA (<?php echo TVA_RATE * 100; ?>%)</div>
-            <div class="stat-value" style="color: var(--accent);">
-                <?php echo number_format($stats['total_tva'], 0, ',', ' '); ?> 
-                <span class="stat-unit">CDF</span>
-            </div>
-        </div>
-
-        <div class="stat-card" style="border-left: 4px solid var(--secondary);">
-            <div class="stat-label">Ventes</div>
-            <div class="stat-value" style="color: var(--secondary);">
-                <?php echo $stats['nb_factures']; ?> 
-                <span class="stat-unit">Factures</span>
+            <div class="stats stats-vertical lg:stats-horizontal bg-base-200">
+                <div class="stat">
+                    <div class="stat-title">Total HT</div>
+                    <div class="stat-value text-primary"><?php echo number_format($stats['total_ht'], 0, ',', ' '); ?></div>
+                    <div class="stat-desc">CDF</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-title">Total TTC</div>
+                    <div class="stat-value text-secondary"><?php echo number_format($stats['total_ttc'], 0, ',', ' '); ?></div>
+                    <div class="stat-desc">CDF</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-title">TVA (<?php echo TVA_RATE * 100; ?>%)</div>
+                    <div class="stat-value text-accent"><?php echo number_format($stats['total_tva'], 0, ',', ' '); ?></div>
+                    <div class="stat-desc">CDF</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-title">Ventes</div>
+                    <div class="stat-value"><?php echo $stats['nb_factures']; ?></div>
+                    <div class="stat-desc">Factures</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="card">
-        <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1.5rem;">Détails des produits vendus</h3>
-        <?php if (empty($stats['produits'])): ?>
-            <div style="text-align: center; padding: 3rem; color: var(--text-muted);">
-                <p>Aucune transaction enregistrée pour cette journée.</p>
-            </div>
-        <?php else: ?>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Désignation</th>
-                            <th>Quantité</th>
-                            <th>Total HT</th>
-                            <th>Part du CA</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($stats['produits'] as $p): ?>
-                            <?php $part = $stats['total_ht'] > 0 ? ($p['total_ht'] / $stats['total_ht'] * 100) : 0; ?>
+    <div class="card bg-base-100 shadow">
+        <div class="card-body">
+            <h3 class="card-title">Details des produits vendus</h3>
+            <?php if (empty($stats['produits'])): ?>
+                <div class="alert">
+                    <span>Aucune transaction enregistree pour cette journee.</span>
+                </div>
+            <?php else: ?>
+                <div class="overflow-x-auto">
+                    <table class="table table-zebra">
+                        <thead>
                             <tr>
-                                <td style="font-weight: 600;"><?php echo htmlspecialchars($p['nom']); ?></td>
-                                <td><span class="badge-qty"><?php echo $p['quantite']; ?></span></td>
-                                <td style="font-weight: 600;"><?php echo number_format($p['total_ht'], 0, ',', ' '); ?> CDF</td>
-                                <td>
-                                    <div class="progress-container">
-                                        <div class="progress-track">
-                                            <div class="progress-bar" style="width: <?php echo $part; ?>%;"></div>
-                                        </div>
-                                        <span style="font-size: 0.8rem; font-weight: 600; min-width: 40px;"><?php echo round($part, 1); ?>%</span>
-                                    </div>
-                                </td>
+                                <th>Designation</th>
+                                <th>Quantite</th>
+                                <th>Total HT</th>
+                                <th>Part du CA</th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        <?php endif; ?>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($stats['produits'] as $p): ?>
+                                <?php $part = $stats['total_ht'] > 0 ? ($p['total_ht'] / $stats['total_ht'] * 100) : 0; ?>
+                                <tr>
+                                    <td class="font-semibold"><?php echo htmlspecialchars($p['nom']); ?></td>
+                                    <td><span class="badge badge-outline"><?php echo $p['quantite']; ?></span></td>
+                                    <td class="font-semibold"><?php echo number_format($p['total_ht'], 0, ',', ' '); ?> CDF</td>
+                                    <td>
+                                        <div class="flex items-center gap-2">
+                                            <progress class="progress progress-primary w-40" value="<?php echo round($part, 1); ?>" max="100"></progress>
+                                            <span class="text-sm font-semibold"><?php echo round($part, 1); ?>%</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
 </div>
 
