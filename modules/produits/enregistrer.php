@@ -36,57 +36,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php include __DIR__ . '/../../includes/header.php'; ?>
 
-<div class="card">
-    <h2>Scanner un produit</h2>
-    
-    <div style="position: relative; margin-bottom: 2rem;">
-        <div id="scanner"></div>
-        <div class="scanner-guide">
-            <div class="laser"></div>
+<div class="card bg-base-100 shadow">
+    <div class="card-body">
+        <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <h2 class="card-title">Scanner un produit</h2>
+            <a href="liste.php" class="btn btn-ghost">Voir le catalogue</a>
         </div>
-    </div>
 
-    <div id="resultat-scan">
-        <!-- Rempli par JS -->
-    </div>
+        <div class="relative mb-6">
+            <div id="scanner" class="rounded-box overflow-hidden border border-base-300"></div>
+        </div>
 
-    <?php if ($message): ?>
-        <div class="alert alert-success"><?php echo $message; ?></div>
-    <?php endif; ?>
+        <div id="resultat-scan"></div>
 
-    <!-- Formulaire caché par défaut (sauf si code en paramètre) -->
-    <div id="form-enregistrement" style="<?php echo $prefilled_code ? 'display: block;' : 'display: none;'; ?> border-top: 2px solid var(--border); pt-4: 2rem; margin-top: 2rem;">
-        <h3 style="margin-bottom: 1.5rem;">Détails du Produit</h3>
-        <form method="POST">
-            <div class="form-group">
-                <label>Code-barres</label>
-                <input type="text" name="code_barre" id="input-code" value="<?php echo htmlspecialchars($prefilled_code); ?>" readonly>
+        <?php if ($message): ?>
+            <div class="alert alert-success mb-4">
+                <span><?php echo $message; ?></span>
             </div>
-            <div class="form-group">
-                <label>Nom du produit</label>
-                <input type="text" name="nom" required placeholder="Ex: Savon Le Coq">
-            </div>
-            <div class="form-group">
-                <label>Prix unitaire HT (CDF)</label>
-                <input type="number" name="prix_unitaire_ht" step="0.01" required placeholder="0.00">
-            </div>
-            <div class="form-group">
-                <label>Date d'expiration (MM-JJ-AAAA)</label>
-                <input type="text" name="date_expiration" placeholder="MM-JJ-AAAA" pattern="\d{2}-\d{2}-\d{4}">
-            </div>
-            <div class="form-group">
-                <label>Quantité initiale en stock</label>
-                <input type="number" name="stock" required value="1">
-            </div>
-            <button type="submit">Enregistrer le produit</button>
-        </form>
-    </div>
+        <?php endif; ?>
 
-    <!-- Affichage si produit déjà connu -->
-    <div id="info-produit" style="display: none; background: #f1f5f9; padding: 2rem; border-radius: var(--radius-md); border-left: 5px solid var(--primary);">
-        <h3 style="color: var(--primary); margin-bottom: 1rem;">Produit déjà référencé</h3>
-        <div id="details-produit"></div>
-        <button onclick="location.reload()" style="margin-top: 1.5rem; background: var(--secondary);">Scanner un autre produit</button>
+        <div id="form-enregistrement" class="pt-6 border-t border-base-300" style="<?php echo $prefilled_code ? 'display: block;' : 'display: none;'; ?>">
+            <h3 class="text-lg font-semibold mb-4">Details du produit</h3>
+            <form method="POST" class="grid gap-4">
+                <label class="form-control">
+                    <span class="label-text">Code-barres</span>
+                    <input type="text" name="code_barre" id="input-code" value="<?php echo htmlspecialchars($prefilled_code); ?>" readonly class="input input-bordered" />
+                </label>
+                <label class="form-control">
+                    <span class="label-text">Nom du produit</span>
+                    <input type="text" name="nom" required placeholder="Ex: Savon Le Coq" class="input input-bordered" />
+                </label>
+                <label class="form-control">
+                    <span class="label-text">Prix unitaire HT (CDF)</span>
+                    <input type="number" name="prix_unitaire_ht" step="0.01" required placeholder="0.00" class="input input-bordered" />
+                </label>
+                <label class="form-control">
+                    <span class="label-text">Date d'expiration (MM-JJ-AAAA)</span>
+                    <input type="text" name="date_expiration" placeholder="MM-JJ-AAAA" pattern="\d{2}-\d{2}-\d{4}" class="input input-bordered" />
+                </label>
+                <label class="form-control">
+                    <span class="label-text">Quantite initiale en stock</span>
+                    <input type="number" name="stock" required value="1" class="input input-bordered" />
+                </label>
+                <button type="submit" class="btn btn-primary">Enregistrer le produit</button>
+            </form>
+        </div>
+
+        <div id="info-produit" class="hidden rounded-box border border-base-300 bg-base-200 p-6">
+            <h3 class="text-lg font-semibold text-primary mb-3">Produit deja reference</h3>
+            <div id="details-produit" class="space-y-1"></div>
+            <button onclick="location.reload()" class="btn btn-secondary mt-4">Scanner un autre produit</button>
+        </div>
     </div>
 </div>
 
@@ -155,17 +155,32 @@ Quagga.onDetected(function(data) {
             if (res.existe) {
                 // Produit connu
                 document.getElementById('form-enregistrement').style.display = 'none';
-                document.getElementById('info-produit').style.display = 'block';
+                document.getElementById('info-produit').classList.remove('hidden');
                 document.getElementById('details-produit').innerHTML = `
-                    <p><strong>Nom :</strong> ${res.donnees.nom}</p>
-                    <p><strong>Code :</strong> ${res.donnees.code_barre}</p>
-                    <p><strong>Prix :</strong> ${res.donnees.prix_unitaire_ht} CDF</p>
-                    <p><strong>Stock :</strong> ${res.donnees.stock || 'N/A'}</p>
-                    <p><strong>Expiration :</strong> ${res.donnees.date_expiration || 'Non définie'}</p>
+                    <div class="flex items-center justify-between">
+                        <span class="font-semibold">Nom</span>
+                        <span>${res.donnees.nom}</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="font-semibold">Code</span>
+                        <span>${res.donnees.code_barre}</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="font-semibold">Prix</span>
+                        <span>${res.donnees.prix_unitaire_ht} CDF</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="font-semibold">Stock</span>
+                        <span>${res.donnees.stock || 'N/A'}</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="font-semibold">Expiration</span>
+                        <span>${res.donnees.date_expiration || 'Non definie'}</span>
+                    </div>
                 `;
             } else {
                 // Produit inconnu
-                document.getElementById('info-produit').style.display = 'none';
+                document.getElementById('info-produit').classList.add('hidden');
                 document.getElementById('form-enregistrement').style.display = 'block';
                 document.getElementById('input-code').value = code;
                 // Scroll vers le formulaire
