@@ -27,21 +27,21 @@
 
 % --- Style des codes source ---
 \lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},   
+    backgroundcolor=\color{backcolour},
     commentstyle=\color{codegreen},
     keywordstyle=\color{magenta},
     numberstyle=\tiny\color{codegray},
     stringstyle=\color{codepurple},
     basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=5pt,                  
-    showspaces=false,                
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
     showstringspaces=false,
-    showtabs=false,                  
+    showtabs=false,
     tabsize=2
 }
 \lstset{style=mystyle}
@@ -49,7 +49,7 @@
 % --- En-tête et pied de page ---
 \pagestyle{fancy}
 \fancyhf{}
-\lhead{Rapport Technique - Système de Facturation PHP}
+\lhead{Rapport Technique - Nook Factures}
 \rhead{UPC - FSI - 2025-2026}
 \cfoot{\thepage}
 
@@ -69,7 +69,7 @@
     \vspace{1cm}
     {\huge\bfseries SYSTÈME DE GESTION DE FACTURATION EN PHP \par}
     \vspace{2cm}
-    
+
     \begin{flushleft}
     {\Large\bfseries Matière :} PROGRAMMATION WEB PHP \\
     \vspace{0.8cm}
@@ -80,7 +80,7 @@
     \vspace{0.8cm}
     {\Large\bfseries Promotion :} L2 LMD \\
     \end{flushleft}
-    
+
     \vfill
     {\large Année Académique : 2025-2026 \par}
 \end{titlepage}
@@ -230,7 +230,7 @@ L'interface utilisateur (UI) a été conçue pour être "minimaliste". Dans un e
 \end{itemize}
 
 \section{Intégration du Scanner de Codes-Barres}
-L'intégration du scanner via la bibliothèque QuaggaJS est une valeur ajoutée majeure. Elle utilise l'API \texttt{getUserMedia} du navigateur pour accéder à la caméra. 
+L'intégration du scanner via la bibliothèque QuaggaJS est une valeur ajoutée majeure. Elle utilise l'API \texttt{getUserMedia} du navigateur pour accéder à la caméra.
 \begin{enumerate}
     \item \textbf{Initialisation :} Le script demande l'accès à la caméra.
     \item \textbf{Scan :} Le flux vidéo est analysé en temps réel pour détecter des motifs de codes-barres (EAN-13 par exemple).
