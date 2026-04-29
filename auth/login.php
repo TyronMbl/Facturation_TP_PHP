@@ -44,9 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <!-- Logo/Header -->
         <div class="text-center mb-8">
             <div class="flex justify-center mb-4">
-                <div class="avatar placeholder">
-                    <div class="bg-primary text-primary-content rounded-full w-20">
-                        <span class="text-2xl font-bold">NF</span>
+                <div class="avatar">
+                    <div class="w-20 rounded-full ring ring-primary ring-offset-2 ring-offset-base-100">
+                        <img src="<?php echo BASE_URL; ?>/NKF.png" alt="Nook Factures">
                     </div>
                 </div>
             </div>

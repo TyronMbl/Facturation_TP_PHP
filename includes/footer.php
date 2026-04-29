@@ -5,9 +5,9 @@
             <aside class="bg-base-100 w-72 min-h-screen border-r">
                 <div class="px-6 py-6">
                     <div class="flex items-center gap-3">
-                        <div class="avatar placeholder">
-                            <div class="bg-primary text-primary-content rounded-box w-10">
-                                <span>NF</span>
+                        <div class="avatar">
+                            <div class="w-10 rounded-box">
+                                <img src="<?php echo BASE_URL; ?>/NKF.png" alt="Nook Factures">
                             </div>
                         </div>
                         <div>

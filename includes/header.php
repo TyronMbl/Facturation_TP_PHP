@@ -26,9 +26,9 @@
                     </label>
                 </div>
                 <div class="flex-1 gap-4">
-                    <div class="avatar placeholder">
-                        <div class="bg-primary text-primary-content rounded-full w-10">
-                            <span>NF</span>
+                    <div class="avatar">
+                        <div class="w-10 rounded-full">
+                            <img src="<?php echo BASE_URL; ?>/NKF.png" alt="Nook Factures">
                         </div>
                     </div>
                     <div class="hidden sm:block">
@@ -53,9 +53,9 @@
                         </svg>
                     </button>
                     <div class="dropdown dropdown-end">
-                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar placeholder">
-                            <div class="bg-neutral text-neutral-content rounded-full w-9">
-                                <span class="text-xs">NF</span>
+                        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                            <div class="w-9 rounded-full">
+                                <img src="<?php echo BASE_URL; ?>/NKF.png" alt="Nook Factures">
                             </div>
                         </div>
                         <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box w-52 mt-3 shadow">
