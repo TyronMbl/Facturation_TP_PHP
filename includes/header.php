@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/assets/css/style.css?v=<?php echo time(); ?>">
-    <title>Système de Facturation</title>
+    <title>Nook Factures</title>
 </head>
 <body>
     <?php
-    $role = $_SESSION['utilisateur']['role'];
-    $current_path = $_SERVER['REQUEST_URI'] ?? '';
+    $role = $_SESSION["utilisateur"]["role"];
+    $current_path = $_SERVER["REQUEST_URI"] ?? "";
     $navActive = function ($needle) use ($current_path) {
-        return strpos($current_path, $needle) !== false ? 'menu-active' : '';
+        return strpos($current_path, $needle) !== false ? "menu-active" : "";
     };
     ?>
     <div class="drawer lg:drawer-open">
@@ -28,13 +28,15 @@
                 <div class="flex-1 gap-4">
                     <div class="avatar placeholder">
                         <div class="bg-primary text-primary-content rounded-full w-10">
-                            <span>FP</span>
+                            <span>NF</span>
                         </div>
                     </div>
                     <div class="hidden sm:block">
                         <div class="text-xs opacity-70">Bienvenue</div>
                         <div class="font-semibold">
-                            <?php echo htmlspecialchars($_SESSION['utilisateur']['nom_complet']); ?>
+                            <?php echo htmlspecialchars(
+                                $_SESSION["utilisateur"]["nom_complet"],
+                            ); ?>
                         </div>
                     </div>
                     <div class="badge badge-outline">
@@ -53,7 +55,7 @@
                     <div class="dropdown dropdown-end">
                         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar placeholder">
                             <div class="bg-neutral text-neutral-content rounded-full w-9">
-                                <span class="text-xs">FP</span>
+                                <span class="text-xs">NF</span>
                             </div>
                         </div>
                         <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box w-52 mt-3 shadow">

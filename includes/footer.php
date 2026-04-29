@@ -7,11 +7,11 @@
                     <div class="flex items-center gap-3">
                         <div class="avatar placeholder">
                             <div class="bg-primary text-primary-content rounded-box w-10">
-                                <span>FP</span>
+                                <span>NF</span>
                             </div>
                         </div>
                         <div>
-                            <div class="text-lg font-bold">NOOK Factures</div>
+                            <div class="text-lg font-bold">Nook Factures</div>
                             <div class="text-xs opacity-70">Facturation & Gestion</div>
                         </div>
                     </div>

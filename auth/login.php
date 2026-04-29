@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/assets/css/style.css?v=<?php echo time(); ?>">
-    <title>Connexion - Système de Facturation</title>
+    <title>Connexion - Nook Factures</title>
 </head>
 <body class="bg-gradient-to-br from-base-100 to-base-200 min-h-screen flex items-center justify-center p-4">
     <div class="w-full max-w-md">
@@ -46,11 +46,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="flex justify-center mb-4">
                 <div class="avatar placeholder">
                     <div class="bg-primary text-primary-content rounded-full w-20">
-                        <span class="text-2xl font-bold">FP</span>
+                        <span class="text-2xl font-bold">NF</span>
                     </div>
                 </div>
             </div>
-            <h1 class="text-3xl font-bold text-base-content mb-2">Système de Facturation</h1>
+            <h1 class="text-3xl font-bold text-base-content mb-2">Nook Factures</h1>
             <p class="text-base-content/70">Connectez-vous à votre espace</p>
         </div>
 
@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <!-- Footer -->
         <div class="text-center mt-8 text-base-content/60 text-sm">
-            <p>© 2026 Système de Facturation. Tous droits réservés.</p>
+            <p>© 2026 Nook Factures. Tous droits réservés.</p>
         </div>
     </div>
 </body>
